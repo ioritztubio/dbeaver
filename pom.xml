@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -20,7 +21,10 @@
         <dbeaver-product>DBeaver</dbeaver-product>
 
         <key.storage.path>/etc/</key.storage.path>
-        <tsa/>
+        <tsa />
+        <!-- SonarCloud config -->
+        <sonar.organization>ioritztubio</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <modules>
@@ -124,7 +128,11 @@
         <!-- desktop build: includes UI components and products -->
         <profile>
             <id>desktop</id>
-            <activation><property><name>!headless-platform</name></property></activation>
+            <activation>
+                <property>
+                    <name>!headless-platform</name>
+                </property>
+            </activation>
             <modules>
                 <!-- Tests -->
                 <module>test</module>
@@ -138,7 +146,9 @@
         <!-- desktop build: includes UI components and products -->
         <profile>
             <id>appstore</id>
-            <activation><activeByDefault>false</activeByDefault></activation>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <modules>
                 <!-- Products -->
                 <module>product/appstore</module>
@@ -209,8 +219,10 @@
                         <!--
                             Jar sign can be slow, especially if you need to sign hundreds of them.
                             Performance hints:
-                                - Force SHA512withRSA algorithm (https://stackoverflow.com/questions/44003975/ev-code-signing-extremely-slow)
-                                - Install fast secure random generator (https://stackoverflow.com/questions/137212/how-to-deal-with-a-slow-securerandom-generator)
+                                - Force SHA512withRSA algorithm
+                        (https://stackoverflow.com/questions/44003975/ev-code-signing-extremely-slow)
+                                - Install fast secure random generator
+                        (https://stackoverflow.com/questions/137212/how-to-deal-with-a-slow-securerandom-generator)
                          -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jarsigner-plugin</artifactId>
